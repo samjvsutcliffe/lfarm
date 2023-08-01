@@ -209,7 +209,7 @@ is bound to nil (no future is created)."
 
 (defun mapping-task (subresult-type task)
   `(lambda (subseqs part-index part-size)
-     (cons part-index (apply #'map-into
+     (cons part-index (apply #'lparallel:pmap-into
                              (make-sequence ',subresult-type part-size)
                              ,(task->fn-form task)
                              subseqs))))
